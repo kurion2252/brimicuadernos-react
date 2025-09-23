@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Itemcount() {
+function ItemCount() {
     const [count, setCount] = useState(0);
     function sumar() {
         setCount(count + 1);
@@ -17,4 +17,4 @@ function Itemcount() {
     )
 }
 
-export default Itemcount;
+export default ItemCount;

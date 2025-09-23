@@ -1,10 +1,10 @@
-import Item from "./Item";
-
+import Item from "./Item"
 
 function ItemListContainer(props) {
     return (
         <section className="itemlist">
             <h3>-- {props.greeting} -- </h3>
+
             <Item
                 title="Agenda Audiovisual"
                 img="https://res.cloudinary.com/dseriytpl/image/upload/v1758666425/agenda_audiovisual_rv00bh.jpgg"
