@@ -1,19 +1,20 @@
 import Articulos from "../componentes/Articulos"
+import { Link } from "react-router-dom"
 
 function NavBar() {
     return (
         <header>
             <nav className="navbar">
-                <div className="brand">
-                    <h1>Brimicuadernos</h1>
-                </div>
+                <link to="/"><h1>Brimicuadernos</h1></link>
+                
                 <ul className="enlacesnavegacion">
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Cuadernos/Agendas</a></li>
-                    <li><a href="#">Presupuesto</a></li>
-                    <li><a href="#">Contacto</a></li>
+
+                    <li><link to='/categoria/inicio'>Cuadernos</link></li> 
+                    <li><link to='/categoria/agendas'>Agendas</link></li>
+                    <li><link to='/categoria/presupuesto'>Presupuesto</link></li>
+                    <li><link to='/categoria/contacto'>Cointacto</link></li>
                 </ul>
-                <Articulos />
+                <link to="/carrito"></link>
             </nav>
         </header>
     )
