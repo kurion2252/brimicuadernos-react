@@ -2,12 +2,13 @@
   "name": "brimicuadernos-react",
   "private": true,
   "version": "1.0.0",
+  "descpription": "aplicacion web, de un ecomerce de agendas artesanales",
   "type": "module",
   "homepage": "https://github.com/kurion2252/brimicuadernos-react",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
+    "lint": "eslint ./src/**/*.{js,jsx}",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -20,12 +21,11 @@
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.3",
     "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.4.0",
-    "vite": "npm:rolldown-vite@7.1.12"
-  },
-  "overrides": {
-    "vite": "npm:rolldown-vite@7.1.12"
+    "vite": "^5.0.0"
   }
 }
