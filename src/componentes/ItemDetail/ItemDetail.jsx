@@ -1,35 +1,39 @@
-// src/componentes/ItemDetail/ItemDetail.jsx
-
 import React, { useState } from "react";
+import { useCart } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
 
 const ItemDetail = ({ item }) => {
-  const [added, setAdded] = useState(false);
+    const { addToCart } = useCart();
+    const [added, setAdded] = useState(false);
 
-  const handleAdd = (quantity) => {
-    console.log(`Agregaste ${quantity} unidades de ${item.title}`);
-    setAdded(true);
-  };
+    if (!item) {
+        return <h3>Cargando producto...</h3>;
+    }
 
-  if (!item) {
-    return <p>Cargando producto...</p>;
-  }
+    // función que recibe la cantidad desde ItemCount
+    const handleAdd = (quantity) => {
+        addToCart(item, quantity);
+        setAdded(true);
+    };
 
-  return (
-    <div className="item-detail">
-      <img src={item.img} alt={item.title} width="300" />
-      <h2>{item.title}</h2>
-      <p>{item.description}</p>
-      <p><strong>${item.price}</strong></p>
+    return (
+        <div className="item-detail">
+            <img src={item.img} alt={item.title} width="300" />
+            <h2>{item.title}</h2>
+            <p>{item.description}</p>
+            <p><strong>Precio: ${item.price}</strong></p>
 
-      {!added ? (
-        <ItemCount stock={item.stock} initial={1} onAdd={handleAdd} />
-      ) : (
-        <p>Producto agregado al carrito 🛒</p>
-      )}
-    </div>
-  );
+            {!added ? (
+                <ItemCount
+                    stock={item.stock}
+                    initial={1}
+                    onAdd={handleAdd}
+                />
+            ) : (
+                <p>Producto agregado al carrito 🛒</p>
+            )}
+        </div>
+    );
 };
 
 export default ItemDetail;
-    

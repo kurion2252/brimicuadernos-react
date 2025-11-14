@@ -1,23 +1,22 @@
-import Articulos from "../Articulo/Articulos"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
+import CartWidget from "../CartWidget/CartWidget";
 
-function NavBar() {
-    return (
-        <header>
-            <nav className="navbar">
-                <Link to="/"><h1>Brimicuadernos</h1></Link>
-                
-                <ul className="enlacesnavegacion">
+const NavBar = () => {
+  return (
+    <nav className="navbar">
+      <Link to="/">Brimi Cuadernos</Link>
 
-                    <li><Link to='/categoria/inicio'>Cuadernos</Link></li> 
-                    <li><Link to='/categoria/agendas'>Agendas</Link></li>
-                    <li><Link to='/categoria/presupuesto'>Presupuesto</Link></li>
-                    <li><Link to='/categoria/contacto'>Contacto</Link></li>
-                </ul>
-                <Link to="/carrito"></Link>
-            </nav>
-        </header>
-    )
-}
+      <ul className="menu">
+        <li><Link to="/categoria/cuadernos">Cuadernos</Link></li>
+        <li><Link to="/categoria/agendas">Agendas</Link></li>
+        <li><Link to="/categoria/escolar">Escolar</Link></li>
+      </ul>
 
-export default NavBar
+      {/* ← Icono del carrito */}
+      <CartWidget />
+    </nav>
+  );
+};
+
+export default NavBar;
