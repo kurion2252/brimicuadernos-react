@@ -1,4 +1,4 @@
-import Articulos from "../componentes/Articulos"
+import Articulos from "../Articulo/Articulos"
 import { Link } from "react-router-dom"
 
 function NavBar() {

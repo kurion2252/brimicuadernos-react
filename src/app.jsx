@@ -1,7 +1,7 @@
-import NavBar from './componentes/NavBar'
+import NavBar from './componentes/NavBar/NavBar'
 import ItemListContainer from './componentes/ItemListContainer/ItemListContainer'
-import Footer from './componentes/Footer'
-import ItemDetailContainer from './componentes/itemDetailContainer'
+import Footer from './componentes/Footer/Footer'
+import ItemDetailContainer from './componentes/ItemDetailContainer/ItemDetailContainer'
 import { Routes, Route} from 'react-router-dom'
 
 
