@@ -5,16 +5,16 @@ function NavBar() {
     return (
         <header>
             <nav className="navbar">
-                <link to="/"><h1>Brimicuadernos</h1></link>
+                <Link to="/"><h1>Brimicuadernos</h1></Link>
                 
                 <ul className="enlacesnavegacion">
 
-                    <li><link to='/categoria/inicio'>Cuadernos</link></li> 
-                    <li><link to='/categoria/agendas'>Agendas</link></li>
-                    <li><link to='/categoria/presupuesto'>Presupuesto</link></li>
-                    <li><link to='/categoria/contacto'>Cointacto</link></li>
+                    <li><Link to='/categoria/inicio'>Cuadernos</Link></li> 
+                    <li><Link to='/categoria/agendas'>Agendas</Link></li>
+                    <li><Link to='/categoria/presupuesto'>Presupuesto</Link></li>
+                    <li><Link to='/categoria/contacto'>Contacto</Link></li>
                 </ul>
-                <link to="/carrito"></link>
+                <Link to="/carrito"></Link>
             </nav>
         </header>
     )
