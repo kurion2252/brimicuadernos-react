@@ -8,8 +8,8 @@ const NavBar = () => {
       <Link to="/">Brimi Cuadernos</Link>
 
       <ul className="menu">
-        <li><Link to="/categoria/cuadernos">Cuadernos</Link></li>
-        <li><Link to="/categoria/agendas">Agendas</Link></li>
+        <li><Link to="/categoria/Agenda-adultos">Agendas para Adultos</Link></li>
+        <li><Link to="/categoria/Agenda-infantil">Agendas Infantiles</Link></li>
         <li><Link to="/categoria/escolar">Escolar</Link></li>
       </ul>
 

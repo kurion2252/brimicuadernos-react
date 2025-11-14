@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import data from "../../data/data.js";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebaseConfig";
 import ItemDetail from "../ItemDetail/ItemDetail.jsx";
 
 function ItemDetailContainer() {
@@ -8,15 +9,18 @@ function ItemDetailContainer() {
   const { id } = useParams();
 
   useEffect(() => {
-    const getItem = new Promise((resolve) => {
-      setTimeout(() => {
-        const foundItem = data.find((p) => p.id === Number(id));
-        resolve(foundItem);
-      }, 1000);
-    });
+    const docRef = doc(db, "products", id); // <-- el id de la URL es el ID del documento
 
-    getItem.then((res) => setItem(res));
+    getDoc(docRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        setItem({ id: snapshot.id, ...snapshot.data() });
+      } else {
+        setItem("not-found");
+      }
+    });
   }, [id]);
+
+  if (item === "not-found") return <p>Producto no encontrado</p>;
 
   return (
     <div className="item-detail-container">
