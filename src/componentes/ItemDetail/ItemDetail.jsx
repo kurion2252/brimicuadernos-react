@@ -1,39 +1,31 @@
-import React, { useState } from "react";
-import { useCart } from "../../context/CartContext";
-import ItemCount from "../ItemCount/ItemCount";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../../firebaseconfig";   //O
+import ItemDetail from "../ItemDetail/ItemDetail";
 
-const ItemDetail = ({ item }) => {
-    const { addToCart } = useCart();
-    const [added, setAdded] = useState(false);
+function ItemDetailContainer() {
+  const [item, setItem] = useState(null);
+  const { id } = useParams();
 
-    if (!item) {
-        return <h3>Cargando producto...</h3>;
+  useEffect(() => {
+    async function getItem() {
+      const itemsRef = collection(db, "productos");
+      const q = query(itemsRef, where("id", "==", id));
+      const querySnap = await getDocs(q);
+
+      if (!querySnap.empty) {
+        setItem({
+          ...querySnap.docs[0].data(),
+          firebaseId: querySnap.docs[0].id,
+        });
+      }
     }
 
-    // función que recibe la cantidad desde ItemCount
-    const handleAdd = (quantity) => {
-        addToCart(item, quantity);
-        setAdded(true);
-    };
+    getItem();
+  }, [id]);
 
-    return (
-        <div className="item-detail">
-            <img src={item.img} alt={item.title} width="300" />
-            <h2>{item.title}</h2>
-            <p>{item.description}</p>
-            <p><strong>Precio: ${item.price}</strong></p>
+  return item ? <ItemDetail item={item} /> : <p>Cargando producto...</p>;
+}
 
-            {!added ? (
-                <ItemCount
-                    stock={item.stock}
-                    initial={1}
-                    onAdd={handleAdd}
-                />
-            ) : (
-                <p>Producto agregado al carrito 🛒</p>
-            )}
-        </div>
-    );
-};
-
-export default ItemDetail;
+export default ItemDetailContainer;

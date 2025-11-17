@@ -30,6 +30,8 @@ function App() {
                         path='*'
                         element={<h2 style={{ textAlign: 'center' }}>Error 404: Página no encontrada</h2>}
                     />
+                    <Route path="/checkout" element={<CheckoutForm />} />
+
                 </Routes>
                 <Footer />
             </div>

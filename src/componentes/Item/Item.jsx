@@ -21,7 +21,7 @@ const Item = ({ item }) => {
 
       <p><strong>${item.price}</strong></p>
 
-<Link to={`/detalle/${item.id}`}>Ver Detalle</Link>
+<Link to={`/item/${item.id}`}>Ver más</Link>
     </div>
   );
 };

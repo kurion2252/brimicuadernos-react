@@ -1,32 +1,33 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebaseConfig";
-import ItemDetail from "../ItemDetail/ItemDetail.jsx";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../../firebaseconfig";  // ← CORREGIDO
+import ItemDetail from "../ItemDetail/ItemDetail";
 
 function ItemDetailContainer() {
   const [item, setItem] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
-    const docRef = doc(db, "products", id); // <-- el id de la URL es el ID del documento
+    async function getItem() {
+      console.log("ID desde la URL:", id);
 
-    getDoc(docRef).then((snapshot) => {
-      if (snapshot.exists()) {
-        setItem({ id: snapshot.id, ...snapshot.data() });
-      } else {
-        setItem("not-found");
+      const itemsRef = collection(db, "productos");
+      const q = query(itemsRef, where("id", "==", id));
+      const querySnap = await getDocs(q);
+
+      if (!querySnap.empty) {
+        setItem({
+          ...querySnap.docs[0].data(),
+          firebaseId: querySnap.docs[0].id,
+        });
       }
-    });
+    }
+
+    getItem();
   }, [id]);
 
-  if (item === "not-found") return <p>Producto no encontrado</p>;
-
-  return (
-    <div className="item-detail-container">
-      {item ? <ItemDetail item={item} /> : <p>Cargando producto...</p>}
-    </div>
-  );
+  return item ? <ItemDetail item={item} /> : <p>Cargando producto...</p>;
 }
 
 export default ItemDetailContainer;
